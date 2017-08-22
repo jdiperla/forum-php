@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['username']) && empty($_SESSION['username'])) {
+            header("Location: index.php", true, 301);
+            exit();
+        }
 require_once('class/Database.php');
 require_once('class/Thread.php');
 require_once('class/Reply.php');
@@ -21,17 +25,15 @@ if ($_GET['type'] == "thread") {
         header("Content-length: $size");
         header("Content-Disposition: attachment; filename=$name");
         echo $content;
-    }
-    else {
+    } else {
         echo "false";
     }
-}
-else {
-    $reply= new Reply($db);
+} else {
+    $reply = new Reply($db);
     $reply->setAid($_GET['id']);
-    $sql="SELECT * FROM reply_file WHERE reply_file_id=:id";
+    $sql = "SELECT * FROM reply_file WHERE reply_file_id=:id";
     $stmt = $reply->selectAttachment($sql);
-    if($stmt){
+    if ($stmt) {
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $type = $row[0]['reply_file_mime'];
         $size = $row[0]['reply_file_size'];
@@ -42,8 +44,7 @@ else {
         header("Content-length: $size");
         header("Content-Disposition: attachment; filename=$name");
         echo $content;
-    }
-    else{
+    } else {
         echo "false";
     }
 }

@@ -6,7 +6,7 @@ require_once "../class/Database.php";
 $database = new Database();
 $db = $database->DbConnection();
 $user= new User($db);
-$sql="SELECT user.username ,user.password ,GROUP_CONCAT(user_roles.role SEPARATOR ',') as role FROM user,user_roles WHERE user.username=user_roles.username GROUP BY user.username";
+$sql="SELECT user.username ,user.password ,GROUP_CONCAT(user_roles.role SEPARATOR ',') as role FROM user,user_roles WHERE user.username=user_roles.username GROUP BY user.username ORDER BY user.user_id";
 $stmt = $user->selectMutiUser($sql);
 ?>
 <html>
@@ -27,6 +27,7 @@ $stmt = $user->selectMutiUser($sql);
                     type: 'post',
                     success: function(result)
                     {
+                        alert("ok");
                         window.location.replace("index.php");
                     }
                 });
@@ -75,7 +76,6 @@ if($stmt && $stmt->rowCount() >0){
 <table>
     <tr>
         <th>Username</th>
-        <th>Password</th>
         <th>Roles</th>
         <th>Action</th>
     </tr>
@@ -84,7 +84,6 @@ while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
     ?>
     <tr>
         <td><?=$row['username']?></td>
-        <td><?=$row['password']?></td>
         <td><?=$row['role']?></td>
         <td>
             <a href="" class="delete">Delete</a>

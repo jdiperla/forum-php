@@ -7,7 +7,7 @@ $database = new Database();
 $db = $database->DbConnection();
 $thread = new Thread($db);
 $thread->setType($_GET['type']);
-$sql = "SELECT * FROM thread WHERE category=:type";
+$sql = "SELECT * FROM thread WHERE category=:type ORDER BY thread_id";
 $stmt = $thread->selectMutiThread($sql);
 ?>
 <!DOCTYPE html>

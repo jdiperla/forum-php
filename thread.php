@@ -16,7 +16,7 @@ $result_1 = $stmt_1->fetchAll();
 
 $reply= new Reply($db);
 $reply->setThread($_GET['id']);
-$sql_2="SELECT thread_reply.* , CONCAT('[', GROUP_CONCAT(JSON_OBJECT('id', reply_file.reply_file_id,'name', reply_file.reply_file_name)),']') as list FROM thread_reply LEFT JOIN reply_file on thread_reply.thread_reply_id=reply_file.reply_file_reply WHERE thread_reply.thread_reply_thread=:id GROUP BY thread_reply.thread_reply_id";
+$sql_2="SELECT thread_reply.* , CONCAT('[', GROUP_CONCAT(JSON_OBJECT('id', reply_file.reply_file_id,'name', reply_file.reply_file_name)),']') as list FROM thread_reply LEFT JOIN reply_file on thread_reply.thread_reply_id=reply_file.reply_file_reply WHERE thread_reply.thread_reply_thread=:id GROUP BY thread_reply.thread_reply_id ORDER BY thread_reply.thread_reply_id";
 $stmt_2 = $reply->selectMutiReply($sql_2);
 ?>
 <html>

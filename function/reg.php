@@ -5,7 +5,7 @@ $database = new Database();
 $db = $database->DbConnection();
 $user= new User($db);
 $user->setUsername($_POST['username']);
-$user->setPassword(sha1($_POST['password']));
+$user->setPassword(hash('sha256', $_POST['password']));
 $sql="INSERT INTO user (username, password) VALUES (:username, :password);";
 $stmt = $user->insertUser($sql);
 
