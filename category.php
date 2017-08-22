@@ -50,7 +50,8 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     <nav>
     <b>Hello <?= $_SESSION['username'] ?></b> |
     <a href="logout.php">Logout</a> |
-    <a href="index.php">Return to home page</a> 
+    <a href="index.php">Return to home page</a> |
+    <a href="changepassword.php">Change password</a> 
     </nav>
     <?php
 } else {
@@ -58,7 +59,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     <nav>
     <a href="login.php">Login</a> |
     <a href="reg.php">Register</a> |
-    <a href="index.php">Return to index</a> 
+    <a href="index.php">Return to home page</a> 
     </nav>
     <?php
 }

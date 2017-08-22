@@ -120,7 +120,8 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     <b>Hello <?= $_SESSION['username'] ?></b> |
     <a href="logout.php">Logout</a> |
     <a href="index.php">Return to index</a> |
-    <a href="category.php?type=<?=$_GET['type']?>">Return to category page</a>
+    <a href="category.php?type=<?=$_GET['type']?>">Return to category page</a> |
+    <a href="changepassword.php">Change password</a> 
     </nav>
     <?php
 } else {

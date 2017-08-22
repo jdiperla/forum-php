@@ -43,7 +43,8 @@ session_start();
             <div id="header">
                 <nav>
                     <b>Hello <?= $_SESSION['username'] ?></b> |
-                    <a href="logout.php">Logout</a>
+                    <a href="logout.php">Logout</a> |
+                    <a href="changepassword.php">Change password</a> 
                 </nav>
             </div>
             <?php
