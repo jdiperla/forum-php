@@ -11,7 +11,7 @@ $database = new Database();
 $db = $database->DbConnection();
 if($_POST['type']=="thread"){
     $thread= new Thread($db);
-    $thread->setId($_POST['id']);
+    $thread->setId(htmlspecialchars($_POST['id']));
     $sql="DELETE FROM thread WHERE thread_id=:id ";
     $stmt = $thread->deleteThread($sql);
     if($stmt)
