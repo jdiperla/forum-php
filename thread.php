@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 require_once "class/Reply.php";
@@ -10,15 +9,16 @@ $db = $database->DbConnection();
 
 $thread= new Thread($db);
 $thread->setId($_GET['id']);
-$sql_1="SELECT thread.* , CONCAT('[', GROUP_CONCAT(JSON_OBJECT('id', thread_file.thread_file_id,'name', thread_file.thread_file_name)),']') as list FROM thread LEFT JOIN thread_file on thread.thread_id=thread_file.thread_file_thread WHERE thread.thread_id=:id GROUP BY thread.thread_id";
+$sql_1='SELECT thread.* , concat(\'[\', group_concat(concat(\'{\"id\": \"\', thread_file.thread_file_id, \'\", \"name\": \"\', thread_file.thread_file_name, \'\"}\') separator \',\'), \']\') as list FROM thread LEFT JOIN thread_file on thread.thread_id=thread_file.thread_file_thread WHERE thread.thread_id=:id GROUP BY thread.thread_id';
 $stmt_1 = $thread->selectOneThread($sql_1);
 $result_1 = $stmt_1->fetchAll();
 
 $reply= new Reply($db);
 $reply->setThread($_GET['id']);
-$sql_2="SELECT thread_reply.* , CONCAT('[', GROUP_CONCAT(JSON_OBJECT('id', reply_file.reply_file_id,'name', reply_file.reply_file_name)),']') as list FROM thread_reply LEFT JOIN reply_file on thread_reply.thread_reply_id=reply_file.reply_file_reply WHERE thread_reply.thread_reply_thread=:id GROUP BY thread_reply.thread_reply_id ORDER BY thread_reply.thread_reply_id";
+$sql_2='SELECT thread_reply.* , concat(\'[\', group_concat(concat(\'{\"id\": \"\', reply_file.reply_file_id, \'\", \"name\": \"\', reply_file.reply_file_name, \'\"}\') separator \',\'), \']\') as list FROM thread_reply LEFT JOIN reply_file on thread_reply.thread_reply_id=reply_file.reply_file_reply WHERE thread_reply.thread_reply_thread=:id GROUP BY thread_reply.thread_reply_id ORDER BY thread_reply.thread_reply_id';
 $stmt_2 = $reply->selectMutiReply($sql_2);
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -55,7 +55,7 @@ $stmt_2 = $reply->selectMutiReply($sql_2);
                 return false;
             });
 
-            $("#rdelete").click(function() {
+            $(".rdelete").click(function() {
                 //Do stuff when clicked
                 var stringarray = $(this).val().split(" ");
                 var id=stringarray[0];
@@ -203,6 +203,7 @@ if($stmt_2 && $stmt_2->rowCount() > 0){
     $number=1;
 while($row2=$stmt_2->fetch(PDO::FETCH_ASSOC)){
 ?>
+    <div>
     <p>Reply#<?=$number?></p>
     <table style="width:40%">
         <tr>
@@ -236,8 +237,9 @@ while($row2=$stmt_2->fetch(PDO::FETCH_ASSOC)){
 if(isset($_SESSION['username']) && !empty($_SESSION['username']) && $_SESSION['role']=="admin") {
 ?>
 <br/>
-<button id="rdelete" value="<?=$row2['thread_reply_id']?> reply">Delete</button>
+<button class="rdelete" value="<?=$row2['thread_reply_id']?> reply">Delete</button>
         <?php
+       echo "</div>";
 }
         $number++;
 }
