@@ -11,11 +11,11 @@ require_once ("../../class/User.php");
 $database = new Database();
 $db = $database->DbConnection();
 $user= new User($db);
-$user->setUsername($_POST['username']);
+$user->setUsername(htmlspecialchars($_POST['username']));
 $check=false;
 
 if(isset($_POST['password']) && !empty($_POST['password'])){
-    $user->setPassword($_POST['password']);
+    $user->setPassword(hash('sha256', htmlspecialchars($_POST['password'])));
     $sql="UPDATE user SET password=:password WHERE username=:username";
     $stmt = $user->updateUser($sql);
     if($stmt)
