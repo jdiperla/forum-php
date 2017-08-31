@@ -12,7 +12,7 @@ $user = new User($db);
 $user->setUsername($_SESSION['username']);
 
 if (isset($_POST['password']) && !empty($_POST['password'])) {
-    $user->setPassword(hash('sha256', $_POST['password']));
+    $user->setPassword(hash('sha256', htmlspecialchars($_POST['password'])));
     $sql = "UPDATE user SET password=:password WHERE username=:username";
     $stmt = $user->updateUser($sql);
     if ($stmt) {
