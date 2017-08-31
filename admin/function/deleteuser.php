@@ -11,7 +11,7 @@ require_once ("../../class/User.php");
 $database = new Database();
 $db = $database->DbConnection();
 $user= new User($db);
-$user->setUsername($_POST['username']);
+$user->setUsername(htmlspecialchars($_POST['username']));
 $sql="DELETE FROM user WHERE username=:username ";
 $stmt = $user->deleteUserOrRole($sql);
 if($stmt)
