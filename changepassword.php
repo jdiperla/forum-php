@@ -6,7 +6,22 @@ session_start();
     <head>
         <title>Forum Login</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <style>
+        @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
+        .navbar{
+            font-family:'Oswald';
+        }
+        .navbar-brand{
+            font-size: 25px;
+        }
+        .navbar-nav{
+            font-size: 16px;
+        }
+        #content{
+            padding-left: 10px;
+        }
+        </style>
         <script>
             $(document).ready(function ()
             {
@@ -35,25 +50,28 @@ session_start();
         </script>
     </head>
     <body>
-        <!--
-        <c:if test="${param.error != null}">
-                <p>Login failed.</p>
-            </c:if>
-            <c:if test="${param.logout != null}">
-                <p>You have logged out.</p>
-            </c:if> -->
+    <div class="container">
         <?php
         if (!isset($_SESSION['username']) && empty($_SESSION['username'])) {
             header("Location: index.php", true, 301);
             exit();
         }
         ?>
-        <nav>
-            <b>Hello <?= $_SESSION['username'] ?></b> |
-            <a href="logout.php">Logout</a> |
-            <a href="index.php">Return to home page</a> |
-            <a href="changepassword.php">Change password</a> 
-        </nav>
+            <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    <a class="navbar-brand" href="index.php"><b>Study Forum</b></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><p class="navbar-text">Hello <?= $_SESSION['username'] ?></p></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php">Logout</a></li>
+    </ul>
+    
+  </div>
+</nav>
+        <div id="content">
         <h2>Change password</h2>
         <div id="error"></div>
         <form id="editpform" method="post">
@@ -63,5 +81,7 @@ session_start();
             <input type="password" id="password" name="password" required/><br/><br/>
             <input type="submit" value="OK"/>
         </form>
+        </div>
+        </div>
     </body>
 </html>

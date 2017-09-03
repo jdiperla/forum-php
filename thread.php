@@ -21,6 +21,7 @@ $stmt_2 = $reply->selectMutiReply($sql_2);
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
 
@@ -86,6 +87,7 @@ $stmt_2 = $reply->selectMutiReply($sql_2);
         });
     </script>
     <style>
+        @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
@@ -101,6 +103,18 @@ $stmt_2 = $reply->selectMutiReply($sql_2);
             background-color: #eee;
         }
 
+        .navbar{
+            font-family:'Oswald';
+        }
+        .navbar-brand{
+            font-size: 25px;
+        }
+        .navbar-nav{
+            font-size: 16px;
+        }
+        #content{
+            padding-left: 10px;
+        }
     </style>
     <?php
     if ($stmt_1 && count($result_1) >0) {
@@ -113,27 +127,44 @@ $stmt_2 = $reply->selectMutiReply($sql_2);
     ?>
 </head>
 <body>
+<div class="container">
 <?php
 if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     ?>
-    <nav>
-    <b>Hello <?= $_SESSION['username'] ?></b> |
-    <a href="logout.php">Logout</a> |
-    <a href="index.php">Return to index</a> |
-    <a href="category.php?type=<?=$_GET['type']?>">Return to category page</a> |
-    <a href="changepassword.php">Change password</a> 
-    </nav>
+     <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    <a class="navbar-brand" href="index.php"><b>Study Forum</b></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><p class="navbar-text">Hello <?= $_SESSION['username'] ?></p></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="category.php?type=<?=$_GET['type']?>">Return to category page</a></li>
+      <li><a href="logout.php">Logout</a></li>
+      <li><a href="changepassword.php">Change password</a></li>
+    </ul>  
+  </div>
+</nav>
+
     <?php
 } else {
     ?>
-    <nav>
-    <a href="login.php">Login</a> |
-    <a href="reg.php">Register</a> |
-    <a href="index.php">Return to index</a> |
-    <a href="category.php?type=<?=$_GET['type']?>">Return to category page</a>
-    </nav>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      <a class="navbar-brand" href="index.php"><b>Study Forum</b></a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="category.php?type=<?=$_GET['type']?>">Return to category page</a></li>
+        <li><a href="login.php">Login</a> </li>
+        <li><a href="reg.php">Register</a></li>
+      </ul>
+    </div>
+  </nav>
     <?php
 }
+echo "<div id=\"content\">";
 if ($stmt_1 && count($result_1) >0) {
     foreach($result_1 as $row) {
         ?>
@@ -252,5 +283,8 @@ else{
     echo "error";
 }
 ?>
+</div>
+</div>
 </body>
 </html>
+

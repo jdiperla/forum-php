@@ -6,7 +6,22 @@ session_start();
 <head>
     <title>Create a Thread</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <style>
+        @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
+        .navbar{
+            font-family:'Oswald';
+        }
+        .navbar-brand{
+            font-size: 25px;
+        }
+        .navbar-nav{
+            font-size: 16px;
+        }
+        #content{
+            padding-left: 10px;
+        }
+        </style>
     <script>
         $(document).ready(function () {
             $('#threadform').submit(function (e) {
@@ -32,23 +47,34 @@ session_start();
     </script>
 </head>
 <body>
+<div class="container">
 <?php
 if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     ?>
-    <nav>
-    <b>Hello <?= $_SESSION['username'] ?></b> |
-    <a href="logout.php">Logout</a> |
-    <a href="index.php">Return to home page</a> |
-    <a href="category.php?type=<?=$_GET['type']?>">Return to category page</a>
-    </nav>
+     <nav class="navbar navbar-default">
+     <div class="container-fluid">
+       <div class="navbar-header">
+       <a class="navbar-brand" href="index.php"><b>Study Forum</b></a>
+       </div>
+       <ul class="nav navbar-nav">
+         <li><p class="navbar-text">Hello <?= $_SESSION['username'] ?></p></li>
+       </ul>
+       <ul class="nav navbar-nav navbar-right">
+         <li><a href="category.php?type=<?=$_GET['type']?>">Return to category page</a></li>
+         <li><a href="logout.php">Logout</a></li>
+         <li><a href="changepassword.php">Change password</a></li>
+       </ul>  
+     </div>
+   </nav>
     <?php
 } else {
-    header("Location: ../index.php", true, 301);
+    header("Location: index.php", true, 301);
     exit();
     ?>
     <?php
 }
 ?>
+<div id="content">
 <h2>Create a Thread</h2>
 <form id="threadform" method="post" enctype="multipart/form-data">
     <label for="topic">Thread Topic:</label><br/>
@@ -63,5 +89,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     <input type="hidden" id="type" name="type" value="<?= $_GET['type'] ?>"/>
     <input type="submit" value="OK"/>
 </form>
+</div>
+</div>
 </body>
 </html>

@@ -16,6 +16,22 @@ $stmt = $user->selectUser($sql);
 <head>
     <title>Edit User</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <style>
+        @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
+        .navbar{
+            font-family:'Oswald';
+        }
+        .navbar-brand{
+            font-size: 25px;
+        }
+        .navbar-nav{
+            font-size: 16px;
+        }
+        #content{
+            padding-left: 10px;
+        }
+        </style>
     <script>
 
         $(document).ready(function()
@@ -46,14 +62,26 @@ $stmt = $user->selectUser($sql);
     </script>
 </head>
 <body>
+<div class="container">
 <?php
 if(isset($_SESSION['username']) && !empty($_SESSION['username']) && $_SESSION['role']=="admin") {
     ?>
-    <nav>
-    <b>Hello <?= $_SESSION['username'] ?></b> |
-    <a href="../logout.php">Logout</a> |
-    <a href="index.php">Return to Admin Page</a>
-    </nav>
+     <nav class="navbar navbar-default">
+     <div class="container-fluid">
+       <div class="navbar-header">
+       <a class="navbar-brand" href="../index.php"><b>Study Forum</b></a>
+       </div>
+       <ul class="nav navbar-nav">
+         <li><p class="navbar-text">Hello <?= $_SESSION['username'] ?></p></li>
+       </ul>
+       <ul class="nav navbar-nav navbar-right">
+         <li><a href="index.php">Return to Admin Page</a></li>
+         <li><a href="logout.php">Logout</a></li>
+         <li><a href="changepassword.php">Change password</a></li>
+       </ul>
+       
+     </div>
+   </nav>
     <?php
 }
 else{
@@ -63,6 +91,7 @@ else{
     <?php
 }
 ?>
+<div id="content">
 <h2>Edit a User</h2>
 <div id="error"></div>
 <?php
@@ -95,5 +124,7 @@ else{
     }
     ?>
 </form>
+</div>
+</div>
 </body>
 </html>

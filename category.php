@@ -13,7 +13,9 @@ $stmt = $thread->selectMutiThread($sql);
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style>
+        @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
         table {
             width: 50%;
         }
@@ -40,30 +42,62 @@ $stmt = $thread->selectMutiThread($sql);
             background-color: black;
             color: white;
         }
+        
+        .navbar{
+            font-family:'Oswald';
+        }
+        .navbar-brand{
+            font-size: 25px;
+        }
+        .navbar-nav{
+            font-size: 16px;
+        }
+        #content{
+            padding-left: 10px;
+        }
+       
     </style>
     <title><?=$_GET['type']?></title>
 </head>
 <body>
+<div class="container">
 <?php
 if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     ?>
-    <nav>
-    <b>Hello <?= $_SESSION['username'] ?></b> |
-    <a href="logout.php">Logout</a> |
-    <a href="index.php">Return to home page</a> |
-    <a href="changepassword.php">Change password</a> 
-    </nav>
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    <a class="navbar-brand" href="index.php"><b>Study Forum</b></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><p class="navbar-text">Hello <?= $_SESSION['username'] ?></p></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php">Logout</a></li>
+      <li><a href="changepassword.php">Change password</a></li>
+    </ul>
+    
+  </div>
+</nav>
+    
     <?php
 } else {
     ?>
-    <nav>
-    <a href="login.php">Login</a> |
-    <a href="reg.php">Register</a> |
-    <a href="index.php">Return to home page</a> 
-    </nav>
+     <nav class="navbar navbar-default">
+     <div class="container-fluid">
+       <div class="navbar-header">
+       <a class="navbar-brand" href="index.php"><b>Study Forum</b></a>
+       </div>
+       <ul class="nav navbar-nav navbar-right">
+         <li><a href="login.php">Login</a> </li>
+         <li><a href="reg.php">Register</a></li>
+       </ul>
+     </div>
+   </nav>
     <?php
 }
 ?>
+<div id="content">
 <h2><?=$_GET['type']?> Topic</h2>
 <?php
 if (isset($_SESSION['username']) && !empty($_SESSION['username']) && $stmt) {
@@ -106,6 +140,7 @@ if ($stmt && $stmt->rowCount() > 0){
         echo "<p>error</p>";
     }
     ?>
-
+</div>
+</div>
 </body>
 </html>
