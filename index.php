@@ -4,7 +4,7 @@ session_start();
 ?>
 <html>
     <head>
-        <title>Forum</title>
+        <title>Study Forum</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <style>
             @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
@@ -74,7 +74,7 @@ session_start();
         }
         ?>
         <div id="content">
-            <h1>Welcome to Forum</h1>
+            <h1>Welcome to Study Forum</h1>
             <div class="list">
                 <nav>
                     <h3>Category List</h3>

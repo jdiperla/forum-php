@@ -28,8 +28,17 @@ $stmt = $user->selectMutiUser($sql);
                     type: 'post',
                     success: function(result)
                     {
-                        alert("ok");
-                        window.location.replace("index.php");
+                        if(data=="success")
+                        {
+                            alert("ok");
+                            window.location.replace("index.php");
+                        }
+                        else {
+                            alert(data);
+                            /*if(!$('#message').length){
+                                $('#error').prepend('<p id="message">Edit failed! Please try again!</p>');
+                            }*/
+                        }
                     }
                 });
                 return false;

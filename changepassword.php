@@ -39,6 +39,7 @@ session_start();
                                 window.location.replace("index.php");
                             } else {
                                 if (!$('#message').length) {
+                                    $("#error").css("color", "red");
                                     $('#error').prepend('<p id="message">Change password failed! Please try again!</p>');
                                 }
                             }
