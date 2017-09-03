@@ -42,6 +42,7 @@ session_start();
                                 }
                                 else {
                                     if(!$('#message').length){
+                                        $("#error").css("color", "red");
                                         $('#error').prepend('<p id="message">Login failed! Please try again!</p>');
                                     }
                                 }

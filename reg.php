@@ -40,6 +40,7 @@ session_start();
                             }
                             else {
                                 if(!$('#message').length){
+                                    $("#error").css("color", "red");
                                     $('#error').prepend('<p id="message">Register failed! Please try again!</p>');
                                 }
                             }

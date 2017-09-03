@@ -87,7 +87,7 @@ else{
 <h2>Add reply</h2>
 <form id="replyform" method="post" enctype="multipart/form-data" >
     <label for="content">Reply Message Body:</label><br/>
-    <textarea rows="5" cols="30" name="content" id="content"></textarea><br/><br/>
+    <textarea rows="5" cols="30" name="content" id="content" required></textarea><br/><br/>
     <label for="attachment"><b>Attachments:</b></label><br/>
     <div>
         <input type="file" name="files[]" multiple="" />

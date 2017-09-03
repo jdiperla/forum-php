@@ -80,7 +80,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     <label for="topic">Thread Topic:</label><br/>
     <input type="text" id="topic" name="topic" required/><br/><br/>
     <label for="content">Thread Message:</label><br/>
-    <textarea rows="5" cols="30" name="content" id="content"></textarea><br/><br/>
+    <textarea rows="5" cols="30" name="content" id="content" required></textarea><br/><br/>
     <label for="attachment"><b>Attachments:</b></label><br/>
     <div>
         <input type="file" name="files[]" multiple=""/>
