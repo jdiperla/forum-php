@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 require_once('../class/Database.php');
@@ -12,6 +11,7 @@ $user->setUsername($username);
 $sql = "SELECT user.username ,user.password ,GROUP_CONCAT(user_roles.role SEPARATOR ' ') as role FROM user,user_roles WHERE user.username=user_roles.username and user.username=:username GROUP BY user.username";
 $stmt = $user->selectUser($sql);
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Edit User</title>

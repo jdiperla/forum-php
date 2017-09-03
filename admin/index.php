@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 require_once "../class/User.php";
@@ -9,6 +8,7 @@ $user= new User($db);
 $sql="SELECT user.username ,user.password ,GROUP_CONCAT(user_roles.role SEPARATOR ',') as role FROM user,user_roles WHERE user.username=user_roles.username GROUP BY user.username ORDER BY user.user_id";
 $stmt = $user->selectMutiUser($sql);
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Admin page</title>
