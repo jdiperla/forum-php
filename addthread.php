@@ -21,6 +21,9 @@ session_start();
         #content{
             padding-left: 10px;
         }
+        #form{
+            margin-top:20px
+        }
         </style>
     <script>
         $(document).ready(function () {
@@ -76,19 +79,29 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
 ?>
 <div id="content">
 <h2>Create a Thread</h2>
+<div id="form">
 <form id="threadform" method="post" enctype="multipart/form-data">
+<div class="form-group row">
+            <div class="col-xs-3">
     <label for="topic">Thread Topic:</label><br/>
-    <input type="text" id="topic" name="topic" required/><br/><br/>
+    <input type="text" id="topic" name="topic" class="form-control" required/>
+    </div>
+    </div>
+    <div class="form-group row">
+            <div class="col-xs-3">
     <label for="content">Thread Message:</label><br/>
-    <textarea rows="5" cols="30" name="content" id="content" required></textarea><br/><br/>
+    <textarea rows="5" cols="30" name="content" id="content" class="form-control" required></textarea>
+    </div>
+    </div>
     <label for="attachment"><b>Attachments:</b></label><br/>
     <div>
         <input type="file" name="files[]" multiple=""/>
     </div>
     <br/>
     <input type="hidden" id="type" name="type" value="<?= $_GET['type'] ?>"/>
-    <input type="submit" value="OK"/>
+    <input type="submit" value="OK" class="btn btn-success"/>
 </form>
+</div>
 </div>
 </div>
 </body>

@@ -22,6 +22,9 @@ session_start();
         #content{
             padding-left: 10px;
         }
+        #form{
+            margin-top:20px
+        }
         </style>
         <script>
             $(document).ready(function()
@@ -72,15 +75,25 @@ session_start();
 </nav>
 <div id="content">
         <h2>Register</h2>
+        <div id="form">
         <div id="error"></div>
         <form method="post" id="regform">
+        <div class="form-group row">
+            <div class="col-xs-3">
             <label for="username">Username:</label><br/>
-            <input type="text" id="username" name="username" /><br/><br/>
+            <input type="text" id="username" name="username" class="form-control" require/>
+            </div>
+            </div>
+            <div class="form-group row">
+            <div class="col-xs-3">
             <label for="password">Password:</label><br/>
-            <input type="password" id="password" name="password" /><br/><br/>
+            <input type="password" id="password" name="password" class="form-control" require/>
+            </div>
+            </div>
             <input type="hidden" name="roles" id="roles" value="ROLE_USER"/>
-            <input type="submit" value="register" name="reg"/>
+            <input type="submit" value="register" name="reg" class="btn btn-primary"/>
         </form>
+        </div>
         </div>
         </div>
     </body>

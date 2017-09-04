@@ -31,6 +31,9 @@ $stmt = $user->selectUser($sql);
         #content{
             padding-left: 10px;
         }
+        #form{
+            margin-top:20px
+        }
         </style>
     <script>
 
@@ -93,6 +96,7 @@ else{
 ?>
 <div id="content">
 <h2>Edit a User</h2>
+<div id="form">
 <div id="error"></div>
 <?php
 if ($stmt && $stmt->rowCount() > 0){
@@ -112,18 +116,27 @@ else{
 }
 ?>
 <form method="post" id="editform">
+<div class="form-group row">
+            <div class="col-xs-3">
     <label for="username">Username:</label><br/>
-    <input type="text" id="username" name="username" value="<?= $row[0]['username'] ?>" readonly/><br/><br/>
+    <input type="text" id="username" name="username" value="<?= $row[0]['username'] ?>" class="form-control" readonly/>
+    </div>
+    </div>
+    <div class="form-group row">
+            <div class="col-xs-3">
     <label for="password">Password:</label><br/>
-    <input type="password" id="password" name="password"/><br/><br/>
+    <input type="password" id="password" name="password" class="form-control"/>
+    </div>
+    </div>
     <label for="role">Role:</label><br/>
     <?=$inputuser?>
     <?=$inputadmin?>
-    <input type="submit" value="edit" name="edit"/>
+    <input type="submit" value="edit" name="edit" class="btn btn-success"/>
     <?php
     }
     ?>
 </form>
+</div>
 </div>
 </div>
 </body>

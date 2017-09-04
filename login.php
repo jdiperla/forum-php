@@ -21,6 +21,9 @@ session_start();
         #content{
             padding-left: 10px;
         }
+        #form{
+            margin-top:20px
+        }
         </style>
         <script>
             $(document).ready(function()
@@ -81,15 +84,26 @@ session_start();
 </nav>
 <div id="content">
         <h2>Forum User Login</h2>
+        <div id="form">
     <div id="error"></div>
+
         <form id="loginform" method="post">
+        <div class="form-group row">
+            <div class="col-xs-3">
             <label for="username">Username:</label><br/>
-            <input type="text" id="username" name="username" required/><br/><br/>
+            <input type="text" id="username" name="username" class="form-control" required/>
+            </div>
+            </div>
+            <div class="form-group row">
+            <div class="col-xs-3">
             <label for="password">Password:</label><br/>
-            <input type="password" id="password" name="password" required/><br/><br/>
-            <input type="submit" value="Login"/>
+            <input type="password" id="password" name="password" class="form-control" required/>
+            </div>
+            </div>
+            <input type="submit" value="Login" class="btn btn-primary"/>
         </form>
+        </div>
+        </div>
+        </div>
     </body>
-    </div>
-    </div>
 </html>
